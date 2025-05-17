@@ -1,0 +1,47 @@
+name: Publish Package
+
+on:
+  push:
+    branches: [main]
+    
+  workflow_dispatch:
+
+env:
+    GITHUB_TOKEN: ${{secrets.GITHUB_TOKEN}}
+    HUSKY: 0
+
+jobs:
+  publish:
+    runs-on: ubuntu-latest
+
+    permissions: 
+      contents: write
+      packages: write
+
+    steps:
+      - name: Checkout the main branch
+        uses: actions/checkout@v4
+        with:
+          fetch-depth: 0
+
+      - name: Setup node
+        uses: actions/setup-node@v3
+        with:
+          node-version: '22'
+          cache: 'npm'
+          registry-url: 'https://npm.pkg.github.com'
+          scope: '@anoguez'
+
+      - name: Install dependencies
+        run: npm ci
+
+      - name: Build affected
+        run: npx nx affected -t build
+
+      - name: Run nx release
+        run: |
+          git config --global user.email "${{ github.actor }}@users.noreply.github.com"
+          git config --global user.name "${{ github.actor }}"
+          npx nx release && npx nx release publish
+        env:
+          NODE_AUTH_TOKEN: ${{secrets.GITHUB_TOKEN}}
