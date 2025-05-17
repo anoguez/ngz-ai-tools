@@ -23,9 +23,6 @@
   ],
   "release": {
     "projects": ["packages/*"],
-    "git": {
-      "commitMessage": "chore(release): {version}"
-    },
     "version": {
       "conventionalCommits": true
     },
