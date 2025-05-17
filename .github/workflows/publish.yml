@@ -42,6 +42,6 @@ jobs:
         run: |
           git config --global user.email "${{ github.actor }}@users.noreply.github.com"
           git config --global user.name "${{ github.actor }}"
-          npx nx release --first-release && npx nx release publish
+          npx nx release && npx nx release publish
         env:
           NODE_AUTH_TOKEN: ${{secrets.GITHUB_TOKEN}}
