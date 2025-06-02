@@ -16,7 +16,6 @@ export class App {
   private setupMiddleware(): void {
     this.app.use(express.json());
 
-    // Add request logging
     this.app.use((req, res, next) => {
       logger.info(`${req.method} ${req.path}`);
       next();
@@ -26,7 +25,6 @@ export class App {
   private setupRoutes(): void {
     this.app.use('/mcp', mcpRouter);
 
-    // Health check endpoint
     this.app.get('/health', (req, res) => {
       res.json({ status: 'ok' });
     });

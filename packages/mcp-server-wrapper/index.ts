@@ -3,8 +3,12 @@
 import { App } from './lib/app';
 import { config } from './config/index';
 import { logger } from './utils/logger';
+import { StdioServerTransport } from '@modelcontextprotocol/sdk/server/stdio.js';
+import { MCPServerManager } from './lib/mcp';
+import yargs from 'yargs';
+import { hideBin } from 'yargs/helpers';
 
-async function startServer() {
+async function startHttpMode() {
   try {
     const app = new App();
     const server = app.getApp().listen(config.PORT, () => {
@@ -13,7 +17,6 @@ async function startServer() {
       );
     });
 
-    // Handle graceful shutdown
     process.on('SIGTERM', () => {
       logger.info('SIGTERM received. Starting graceful shutdown...');
       server.close(() => {
@@ -37,4 +40,38 @@ async function startServer() {
   }
 }
 
-startServer();
+async function startStdioMode() {
+  logger.info('Starting mcp in STDIO mode');
+  const serverManager = new MCPServerManager();
+  const transport = new StdioServerTransport();
+  await serverManager.getServer().connect(transport);
+}
+
+async function main() {
+  const argv = yargs(hideBin(process.argv))
+    .option('mode', {
+      alias: 'm',
+      type: 'string',
+      choices: ['http', 'stdio'],
+      default: 'http',
+      describe: 'Server mode to run in',
+    })
+    .parseSync();
+
+  switch (argv.mode) {
+    case 'http':
+      await startHttpMode();
+      break;
+    case 'stdio':
+      await startStdioMode();
+      break;
+    default:
+      logger.error(`Unsupported mode: ${argv.mode}`);
+      process.exit(1);
+  }
+}
+
+main().catch((error) => {
+  logger.error('Startup error:', error);
+  process.exit(1);
+});
