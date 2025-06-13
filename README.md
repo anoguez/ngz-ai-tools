@@ -21,6 +21,14 @@ Running from published package
 npx -y @anoguez/mcp-server-wrapper@latest
 ```
 
+### mode
+
+To run in stdio mode specify `--mode=stdio`
+
+```sh
+npx -y @anoguez/mcp-server-wrapper@latest --mode=stdio
+```
+
 ### Inspector
 
 ![MCP Inspector](./docs/mcp-Inspector.jpeg)
