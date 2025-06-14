@@ -30,8 +30,8 @@
     "include": [
         "src/**/*",
         "index.ts",
-        "config/**/*"
-, "../mcp-contracts/src/utils"    ],
+        "config/**/*",
+    ],
     "exclude": [
         "dist",
         "node_modules",

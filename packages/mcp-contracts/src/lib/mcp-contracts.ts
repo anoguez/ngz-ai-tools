@@ -1,13 +1,11 @@
-/* eslint-disable @typescript-eslint/no-explicit-any */
-import { ResourceTemplate } from '@modelcontextprotocol/sdk/server/mcp.js';
+import {
+  PromptCallback,
+  ReadResourceTemplateCallback,
+  ResourceTemplate,
+  ToolCallback,
+} from '@modelcontextprotocol/sdk/server/mcp.js';
 import { StreamableHTTPServerTransport } from '@modelcontextprotocol/sdk/server/streamableHttp.js';
 import z from 'zod';
-
-// export type ToolCallback<T extends z.ZodRawShape> = (
-//   params: z.infer<z.ZodObject<T>>
-// ) => Promise<{
-//   content: Array<{ type: 'text'; text: string }>;
-// }>;
 
 export interface TransportMap {
   [sessionId: string]: StreamableHTTPServerTransport;
@@ -19,20 +17,20 @@ export type HandlerValues = {
   prompts: BaseMCPPrompt[];
 };
 
-export interface BaseMCPTool {
+export interface BaseMCPTool<T extends z.ZodRawShape = z.ZodRawShape> {
   readonly name: string;
   readonly schema: z.ZodRawShape;
-  readonly cb: any; // TODO
+  readonly cb: ToolCallback<T>;
 }
 
 export interface BaseMCPResource {
   readonly name: string;
   readonly template: ResourceTemplate;
-  readonly cb: any; // TODO
+  readonly cb: ReadResourceTemplateCallback;
 }
 
-export interface BaseMCPPrompt {
+export interface BaseMCPPrompt<T extends z.ZodRawShape = z.ZodRawShape> {
   readonly name: string;
   readonly schema: z.ZodRawShape;
-  readonly cb: any; // TODO
+  readonly cb: PromptCallback<T>;
 }

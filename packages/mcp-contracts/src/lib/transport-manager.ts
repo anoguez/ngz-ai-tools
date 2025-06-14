@@ -1,6 +1,6 @@
-import { TransportMap } from '@anoguez/mcp-contracts';
 import { StreamableHTTPServerTransport } from '@modelcontextprotocol/sdk/server/streamableHttp.js';
 import { randomUUID } from 'node:crypto';
+import { TransportMap } from './mcp-contracts';
 
 export class TransportManager {
   private transports: TransportMap = {};
