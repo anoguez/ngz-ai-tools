@@ -1,12 +1,15 @@
 #!/usr/bin/env node
 
-import { App } from './lib/app';
+import { App } from './src/app';
 import { config } from './config/index';
-import { logger } from './utils/logger';
 import { StdioServerTransport } from '@modelcontextprotocol/sdk/server/stdio.js';
-import { MCPServerManager } from './lib/mcp';
 import yargs from 'yargs';
 import { hideBin } from 'yargs/helpers';
+import { logger, MCPServerManagerImpl } from '@anoguez/mcp-contracts';
+import { YahooFinanceV2Tool } from './src/tools/yahooFinanceV2';
+import { EchoTool } from './src/tools';
+import { EchoResource, GreetingResource } from './src/resources';
+import { EchoPrompt } from './src/prompts';
 
 async function startHttpMode() {
   try {
@@ -42,8 +45,15 @@ async function startHttpMode() {
 
 async function startStdioMode() {
   logger.info('Starting mcp in STDIO mode');
-  const serverManager = new MCPServerManager();
+  const serverManager = new MCPServerManagerImpl();
   const transport = new StdioServerTransport();
+
+  serverManager.registerHandlers({
+    tools: [new YahooFinanceV2Tool(), new EchoTool()],
+    resources: [new GreetingResource(), new EchoResource()],
+    prompts: [new EchoPrompt()],
+  });
+
   await serverManager.getServer().connect(transport);
 }
 

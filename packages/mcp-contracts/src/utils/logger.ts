@@ -1,5 +1,6 @@
 import pino from 'pino';
 
+// TODO: move to another package
 class Logger {
   private logger: pino.Logger;
 
