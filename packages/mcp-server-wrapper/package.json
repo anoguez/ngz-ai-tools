@@ -10,7 +10,7 @@
   ],
   "license": "ISC",
   "author": "anoguez",
-  "type": "commonjs",
+  "type": "module",
   "main": "dist/index.js",
   "bin": "./dist/index.js",
   "types": "dist/index.d.ts",
@@ -28,10 +28,11 @@
     "test": "jest",
     "lint": "eslint ./**/*.ts",
     "prepare": "npm run build",
-    "dev": "nodemon --exec ts-node index.ts",
+    "dev": "tsx watch index.ts",
     "inspector": "npx @modelcontextprotocol/inspector node dist/index.js"
   },
   "dependencies": {
+    "@anoguez/mcp-contracts": "*",
     "@modelcontextprotocol/sdk": "^1.11.2",
     "@types/yargs": "^17.0.33",
     "express": "^5.1.0",
@@ -44,9 +45,12 @@
     "@eslint/js": "^9.26.0",
     "@nx/js": "^21.0.3",
     "@types/express": "^5.0.1",
+    "@types/node": "^24.0.1",
     "eslint": "^9.26.0",
     "globals": "^16.1.0",
+    "nodemon": "^3.1.10",
     "ts-node": "^10.9.2",
+    "tsx": "^4.20.3",
     "typescript": "^5.8.3",
     "typescript-eslint": "^8.32.1"
   }

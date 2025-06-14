@@ -1,31 +1,41 @@
 {
-  "extends": "../../tsconfig.base.json",
-  "compilerOptions": {
-    "baseUrl": ".",
-    "rootDir": ".",
-    "jsx": "react-jsx",
-    "allowJs": true,
-    "outDir": "dist",
-    "tsBuildInfoFile": "dist/tsconfig.lib.tsbuildinfo",
-    "emitDeclarationOnly": false,
-    "declaration": true,
-    "types": [
-      "node"
+    "extends": "../../tsconfig.base.json",
+    "compilerOptions": {
+        "baseUrl": ".",
+        "rootDir": ".",
+        "jsx": "react-jsx",
+        "esModuleInterop": true,
+        "allowJs": false,
+        "outDir": "dist",
+        "tsBuildInfoFile": "dist/tsconfig.lib.tsbuildinfo",
+        "emitDeclarationOnly": false,
+        "declaration": true,
+        "strict": true,
+        "resolveJsonModule": true,
+        "noEmit": true,
+        "module": "ESNext",
+        "moduleResolution": "Bundler",
+        "types": [
+            "node"
+        ],
+        "lib": [
+            "es2022",
+            "DOM"
+        ]
+    },
+    "ts-node": {
+        "esm": true,
+        "experimentalSpecifierResolution": "node"
+    },
+    "include": [
+        "src/**/*",
+        "index.ts",
+        "config/**/*"
+, "../mcp-contracts/src/utils"    ],
+    "exclude": [
+        "dist",
+        "node_modules",
+        "**/*.test.ts",
+        "**/*.spec.ts"
     ]
-  },
-  "include": [
-    "**/*.ts"
-  ],
-  "references": [],
-  "exclude": [
-    "dist",
-    "./**/*.test.ts",
-    "./**/*.spec.ts",
-    "./**/*.test.tsx",
-    "./**/*.spec.tsx",
-    "./**/*.test.js",
-    "./**/*.spec.js",
-    "./**/*.test.jsx",
-    "./**/*.spec.jsx"
-  ]
 }

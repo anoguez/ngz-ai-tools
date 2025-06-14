@@ -1,7 +1,11 @@
 import express from 'express';
 import { isInitializeRequest } from '@modelcontextprotocol/sdk/types.js';
-import { transportManager } from '../lib/transport';
-import { MCPServerManager } from '../lib/mcp';
+import { transportManager } from '../transport';
+import { MCPServerManagerImpl } from '@anoguez/mcp-contracts';
+import { YahooFinanceV2Tool } from '../tools/yahooFinanceV2';
+import { EchoTool } from '../tools';
+import { EchoResource, GreetingResource } from '../resources';
+import { EchoPrompt } from '../prompts';
 
 export const mcpRouter = express.Router();
 
@@ -16,7 +20,14 @@ mcpRouter.post('/', async (req, res) => {
   } else if (!sessionId && isInitializeRequest(req.body)) {
     // New initialization request
     const transport = transportManager.createTransport();
-    const mcpServer = new MCPServerManager();
+    const mcpServer = new MCPServerManagerImpl();
+
+    // Register tools, resources and prompts
+    mcpServer.registerHandlers({
+      tools: [new YahooFinanceV2Tool(), new EchoTool()],
+      resources: [new GreetingResource(), new EchoResource()],
+      prompts: [new EchoPrompt()],
+    });
 
     // Connect to the MCP server
     await mcpServer.getServer().connect(transport);

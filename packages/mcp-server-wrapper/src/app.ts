@@ -1,7 +1,7 @@
 import express, { Application } from 'express';
-import { mcpRouter } from '../routes/mcp';
-import { errorHandler } from '../middleware/error';
-import { logger } from '../utils/logger';
+import { mcpRouter } from './routes/mcp';
+import { errorHandler } from './middleware/error';
+import { logger } from '@anoguez/mcp-contracts';
 
 export class App {
   private app: Application;
