@@ -13,7 +13,8 @@
     }
   },
   "scripts": {
-    "build": "tsc --build tsconfig.lib.json"
+    "build": "tsc --build tsconfig.lib.json",
+    "lint": "eslint ./**/*.ts"
   },
   "dependencies": {
     "tslib": "^2.3.0"
