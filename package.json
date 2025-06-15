@@ -4,12 +4,15 @@
   "license": "MIT",
   "scripts": {
     "prepare": "husky",
-    "test": "jest"
+    "test": "jest",
+    "lint": "nx run-many --target=lint --all",
+    "lint:fix": "nx run-many --target=lint --all --fix"
   },
   "private": true,
   "devDependencies": {
     "@commitlint/cli": "^19.8.1",
     "@commitlint/config-conventional": "^19.8.1",
+    "@nx/eslint": "^21.2.0",
     "@nx/js": "^21.0.3",
     "@swc-node/register": "~1.9.1",
     "@swc/core": "~1.5.7",
@@ -26,6 +29,5 @@
   },
   "workspaces": [
     "packages/*"
-  ],
-  "dependencies": {}
+  ]
 }
