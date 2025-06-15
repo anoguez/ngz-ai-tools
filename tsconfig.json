@@ -7,7 +7,7 @@
       "path": "./packages/mcp-server-wrapper"
     },
     {
-      "path": "./packages/mcp-contracts"
+      "path": "./packages/mcp-core"
     }
   ]
 }

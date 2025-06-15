@@ -5,7 +5,7 @@ import { config } from './config/index';
 import { StdioServerTransport } from '@modelcontextprotocol/sdk/server/stdio.js';
 import yargs from 'yargs';
 import { hideBin } from 'yargs/helpers';
-import { logger, MCPServerManagerImpl } from '@anoguez/mcp-contracts';
+import { logger, MCPServerManagerImpl } from '@anoguez/mcp-core';
 import { YahooFinanceV2Tool } from './src/tools/yahooFinanceV2';
 import { EchoTool } from './src/tools';
 import { EchoResource, GreetingResource } from './src/resources';

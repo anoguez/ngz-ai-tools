@@ -1,14 +1,16 @@
-import { BaseMCPPrompt } from '@anoguez/mcp-contracts';
+import { BaseMCPPrompt } from '@anoguez/mcp-core';
+import { GetPromptResult } from '@modelcontextprotocol/sdk/types.js';
 import z from 'zod';
 
-const promptSchema = z.object({ message: z.string() });
-type PromptParams = z.infer<typeof promptSchema>;
+const PromptSchema = z.object({ message: z.string() });
 
-export class EchoPrompt implements BaseMCPPrompt {
+export class EchoPrompt implements BaseMCPPrompt<typeof PromptSchema> {
   public readonly name = 'echo';
-  public readonly schema = promptSchema.shape;
+  public readonly schema = PromptSchema.shape;
 
-  public readonly cb = async ({ message }: PromptParams) => ({
+  public readonly cb = async ({
+    message,
+  }: typeof PromptSchema.shape): Promise<GetPromptResult> => ({
     messages: [
       {
         role: 'user',

@@ -1,4 +1,4 @@
-import { BaseMCPResource } from '@anoguez/mcp-contracts';
+import { BaseMCPResource } from '@anoguez/mcp-core';
 import { ResourceTemplate } from '@modelcontextprotocol/sdk/server/mcp.js';
 
 export class GreetingResource implements BaseMCPResource {
@@ -7,7 +7,10 @@ export class GreetingResource implements BaseMCPResource {
     list: undefined,
   });
 
-  public readonly cb = async (uri: URL, { name }: { name: string }) => ({
+  public readonly cb = async (
+    uri: URL,
+    { name }: Record<string, string | string[]>
+  ) => ({
     contents: [
       {
         uri: uri.href,
