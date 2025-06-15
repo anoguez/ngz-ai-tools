@@ -1,6 +1,6 @@
 import express from 'express';
 import { isInitializeRequest } from '@modelcontextprotocol/sdk/types.js';
-import { MCPServerManagerImpl, transportManager } from '@anoguez/mcp-contracts';
+import { MCPServerManagerImpl, transportManager } from '@anoguez/mcp-core';
 import { YahooFinanceV2Tool } from '../tools/yahooFinanceV2';
 import { EchoTool } from '../tools';
 import { EchoResource, GreetingResource } from '../resources';

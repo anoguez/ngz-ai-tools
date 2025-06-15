@@ -1,10 +1,12 @@
 import {
-  PromptCallback,
   ReadResourceTemplateCallback,
   ResourceTemplate,
-  ToolCallback,
 } from '@modelcontextprotocol/sdk/server/mcp.js';
 import { StreamableHTTPServerTransport } from '@modelcontextprotocol/sdk/server/streamableHttp.js';
+import {
+  CallToolResult,
+  GetPromptResult,
+} from '@modelcontextprotocol/sdk/types.js';
 import z from 'zod';
 
 export interface TransportMap {
@@ -17,20 +19,29 @@ export type HandlerValues = {
   prompts: BaseMCPPrompt[];
 };
 
-export interface BaseMCPTool<T extends z.ZodRawShape = z.ZodRawShape> {
-  readonly name: string;
-  readonly schema: z.ZodRawShape;
-  readonly cb: ToolCallback<T>;
-}
+export type ToolCallback<Args extends z.ZodRawShape> = (
+  args: Args
+) => Promise<CallToolResult>;
 
+export type PromptCallback<Args extends z.ZodRawShape> = (
+  args: Args
+) => Promise<GetPromptResult>;
+
+export interface BaseMCPTool<TSchema extends z.AnyZodObject = z.AnyZodObject> {
+  readonly name: string;
+  readonly schema: TSchema['shape'];
+  readonly cb: ToolCallback<TSchema['shape']>;
+}
 export interface BaseMCPResource {
   readonly name: string;
   readonly template: ResourceTemplate;
   readonly cb: ReadResourceTemplateCallback;
 }
 
-export interface BaseMCPPrompt<T extends z.ZodRawShape = z.ZodRawShape> {
+export interface BaseMCPPrompt<
+  TSchema extends z.AnyZodObject = z.AnyZodObject
+> {
   readonly name: string;
-  readonly schema: z.ZodRawShape;
-  readonly cb: PromptCallback<T>;
+  readonly schema: TSchema['shape'];
+  readonly cb: PromptCallback<TSchema['shape']>;
 }
