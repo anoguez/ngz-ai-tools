@@ -1,3 +1,13 @@
+## 0.3.1 (2025-06-26)
+
+### 🩹 Fixes
+
+- fix dependencies ([427396a](https://github.com/anoguez/ngz-ai-tools/commit/427396a))
+
+### ❤️ Thank You
+
+- Anderson Noguez @anoguez
+
 ## 0.2.0 (2025-06-15)
 
 ### 🚀 Features
