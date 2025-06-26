@@ -8,6 +8,9 @@ A modern monorepo containing a collection of AI-focused TypeScript packages desi
 ## 📦 Packages
 
 - **mcp-core**: Core types, interfaces and utilities for MCP (Model Context Protocol) implementations
+
+## Examples
+
 - **mcp-server-wrapper**: A flexible server wrapper for AI integrations
 
 ## 🚀 Quick Start

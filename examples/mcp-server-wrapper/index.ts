@@ -2,7 +2,6 @@
 
 import { App } from './src/app';
 import { config } from './config/index';
-import { StdioServerTransport } from '@modelcontextprotocol/sdk/server/stdio.js';
 import yargs from 'yargs';
 import { hideBin } from 'yargs/helpers';
 import { logger, MCPServerManagerImpl } from '@anoguez/mcp-core';
@@ -46,7 +45,6 @@ async function startHttpMode() {
 async function startStdioMode() {
   logger.info('Starting mcp in STDIO mode');
   const serverManager = new MCPServerManagerImpl();
-  const transport = new StdioServerTransport();
 
   serverManager.registerHandlers({
     tools: [new YahooFinanceV2Tool(), new EchoTool()],
@@ -54,7 +52,8 @@ async function startStdioMode() {
     prompts: [new EchoPrompt()],
   });
 
-  await serverManager.getServer().connect(transport);
+  await serverManager.startStdioMode();
+  logger.info('Server started in STDIO mode');
 }
 
 async function main() {
