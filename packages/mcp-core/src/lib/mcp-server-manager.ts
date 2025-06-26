@@ -1,4 +1,5 @@
 import { McpServer } from '@modelcontextprotocol/sdk/server/mcp.js';
+import { StdioServerTransport } from '@modelcontextprotocol/sdk/server/stdio.js';
 import { Implementation } from '@modelcontextprotocol/sdk/types.js';
 import { logger } from '../utils/logger';
 import { HandlerValues } from './mcp-contracts';
@@ -42,5 +43,9 @@ export class MCPServerManagerImpl extends MCPServerManager {
 
   getServer(): McpServer {
     return this.server;
+  }
+
+  async startStdioMode() {
+    await this.server.connect(new StdioServerTransport());
   }
 }

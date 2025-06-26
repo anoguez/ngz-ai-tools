@@ -2,8 +2,8 @@
 
 ### 🚀 Features
 
-- update readme ([e69282e](https://github.com/anoguez/ngz-ai-tools/commit/e69282e))
 - rename package mcp-contracts to mcp-core ([5cfd2d8](https://github.com/anoguez/ngz-ai-tools/commit/5cfd2d8))
+- update readme ([e69282e](https://github.com/anoguez/ngz-ai-tools/commit/e69282e))
 
 ### 🩹 Fixes
 

@@ -2,7 +2,18 @@ import { StreamableHTTPServerTransport } from '@modelcontextprotocol/sdk/server/
 import { randomUUID } from 'node:crypto';
 import { TransportMap } from './mcp-contracts';
 
-export class TransportManager {
+export class StatelessTransportManager {
+  createTransport(): StreamableHTTPServerTransport {
+    const transport: StreamableHTTPServerTransport =
+      new StreamableHTTPServerTransport({
+        sessionIdGenerator: undefined,
+      });
+
+    return transport;
+  }
+}
+
+export class StatefulTransportManager {
   private transports: TransportMap = {};
 
   createTransport(): StreamableHTTPServerTransport {
@@ -36,4 +47,5 @@ export class TransportManager {
 }
 
 // Export a singleton instance
-export const transportManager = new TransportManager();
+export const statefulTransportManager = new StatefulTransportManager();
+export const statelessTransportManager = new StatelessTransportManager();
