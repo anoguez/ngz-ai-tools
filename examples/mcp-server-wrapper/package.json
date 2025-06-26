@@ -1,5 +1,5 @@
 {
-  "name": "@anoguez/mcp-server-wrapper",
+  "name": "mcp-server-wrapper",
   "version": "0.2.0",
   "description": "MCP SDK wrapper for AI interactions",
   "keywords": [
@@ -18,10 +18,6 @@
     "dist",
     "README.md"
   ],
-  "repository": {
-    "type": "git",
-    "url": "git+https://github.com/anoguez/ngz-ai-tools.git"
-  },
   "scripts": {
     "build": "tsc --build tsconfig.lib.json",
     "typecheck": "tsc",

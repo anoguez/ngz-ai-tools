@@ -33,13 +33,10 @@ jobs:
           scope: '@anoguez'
 
       - name: Install dependencies
-        run: npm install --ignore-scripts
+        run: npm ci
 
-      - name: Build packages in order
-        run: npx nx run-many --target=build --all --parallel=false
-
-      - name: Lint
-        run: npm run lint
+      - name: Build affected
+        run: npx nx affected -t build
 
       - name: Run nx release
         run: |

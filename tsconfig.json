@@ -4,10 +4,10 @@
   "files": [],
   "references": [
     {
-      "path": "./examples/mcp-server-wrapper"
+      "path": "./packages/mcp-core"
     },
     {
-      "path": "./packages/mcp-core"
+      "path": "./examples/mcp-server-wrapper"
     }
   ]
 }

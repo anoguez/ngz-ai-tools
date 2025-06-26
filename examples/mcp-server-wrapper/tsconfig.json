@@ -3,6 +3,9 @@
   "include": [],
   "references": [
     {
+      "path": "../../packages/mcp-core"
+    },
+    {
       "path": "./tsconfig.lib.json"
     }
   ]
