@@ -29,6 +29,8 @@
     "typescript-eslint": "^8.35.0"
   },
   "workspaces": [
-    "packages/*"
-  ]
+    "packages/*",
+    "examples/*"
+  ],
+  "packageManager": "yarn@4.9.3"
 }

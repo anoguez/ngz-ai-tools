@@ -12,14 +12,17 @@
     }
   },
   "scripts": {
-    "build": "tsc --build tsconfig.lib.json",
+    "build": "tsup",
+    "dev": "tsup --watch",
     "lint": "eslint ./**/*.ts"
   },
   "dependencies": {
-    "tslib": "^2.3.0",
-    "pino": "^9.6.0"
+    "@modelcontextprotocol/sdk": "^1.11.2",
+    "pino": "^9.6.0",
+    "tslib": "^2.3.0"
   },
   "devDependencies": {
-    "@types/express": "^5.0.3"
+    "@types/express": "^5.0.3",
+    "tsup": "^8.5.0"
   }
 }

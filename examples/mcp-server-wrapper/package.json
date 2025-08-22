@@ -23,12 +23,12 @@
     "typecheck": "tsc",
     "test": "jest",
     "lint": "eslint ./**/*.ts",
-    "prepare": "npm run build",
+    "prepare": "yarn build",
     "dev": "tsx watch index.ts",
     "inspector": "npx @modelcontextprotocol/inspector node dist/index.js"
   },
   "dependencies": {
-    "@anoguez/mcp-core": "0.2.0",
+    "@anoguez/mcp-core": "workspace:*",
     "@modelcontextprotocol/sdk": "^1.11.2",
     "@types/yargs": "^17.0.33",
     "express": "^5.1.0",

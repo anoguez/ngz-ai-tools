@@ -3,6 +3,7 @@ import { StdioServerTransport } from '@modelcontextprotocol/sdk/server/stdio.js'
 import { Implementation } from '@modelcontextprotocol/sdk/types.js';
 import { logger } from '../utils/logger';
 import { HandlerValues } from './mcp-contracts';
+import { StreamableHTTPServerTransport } from '@modelcontextprotocol/sdk/server/streamableHttp.js';
 
 const defaultConfig: Implementation = {
   name: 'ngz-mcp-server',
@@ -41,8 +42,8 @@ export class MCPServerManagerImpl extends MCPServerManager {
     }
   }
 
-  getServer(): McpServer {
-    return this.server;
+  async startHttpMode(transport: StreamableHTTPServerTransport) {
+    await this.server.connect(transport);
   }
 
   async startStdioMode() {

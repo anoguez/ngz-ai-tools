@@ -4,11 +4,11 @@ A wrapper for the Model Context Protocol (MCP) SDK to simplify AI interactions.
 
 ## Running it locally
 
-Run `npm run dev`
+Run `yarn dev`
 
 ## Inpector
 
-Run `npm run inspector` to inspect and debug MCP.
+Run `yarn inspector` to inspect and debug MCP.
 
 ### Registering tools, resources and prompts
 
