@@ -1,9 +1,19 @@
 {
   "extends": "../../tsconfig.base.json",
-  "include": [],
-  "references": [
-    {
-      "path": "./tsconfig.lib.json"
-    }
-  ]
+  "compilerOptions": {
+    "outDir": "dist",
+    "rootDir": "src",
+    "module": "ESNext",
+    "moduleResolution": "bundler",
+    "types": ["node"],
+    "declaration": true,
+    "composite": false,
+    "noEmit": false
+  },
+  "include": [
+    "src/**/*.ts",
+    "src/lib/**/*.ts",
+    "src/utils/**/*.ts"
+  ],
+  "exclude": ["node_modules", "dist"]
 }

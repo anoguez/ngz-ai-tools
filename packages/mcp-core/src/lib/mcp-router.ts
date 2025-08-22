@@ -38,7 +38,7 @@ async function handleClientRequest(
     mcpServer.registerHandlers(handlers);
 
     // Connect to the MCP server
-    await mcpServer.getServer().connect(transport);
+    await mcpServer.startHttpMode(transport);
     await transport.handleRequest(req, res, req.body);
   } else {
     // Invalid request
