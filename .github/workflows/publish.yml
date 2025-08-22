@@ -31,11 +31,11 @@ jobs:
           registry-url: 'https://npm.pkg.github.com'
           scope: '@anoguez'
 
-      - name: Enable Corepack
-        run: corepack enable
-        
-      - name: Set Yarn Version
-        run: corepack prepare yarn@4.9.3 --activate
+      - name: Install Yarn
+        run: |
+          npm install -g yarn
+          yarn set version berry
+          yarn --version
 
       - name: Install dependencies
         run: yarn install
